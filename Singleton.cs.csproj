@@ -1,10 +1,51 @@
-<Project Sdk="Microsoft.NET.Sdk">
+using System;
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+namespace Singleton
+{
 
-</Project>
+	public sealed class Singleton
+	{
+
+	private Singleton ()
+	{
+	}
+
+	private static Singleton _instance;
+
+	public static Singleton GetInstance ()
+	{
+
+		if (_instance == null)
+		{
+			_instance = new Singleton ();
+		}
+
+		return _instance;
+
+	}
+}
+
+	class Program
+	{
+
+		static void Main (string[]args)
+		{
+
+			Singleton s1 = Singleton.GetInstance ();
+			Singleton s2 = Singleton.GetInstance ();
+			
+			if (s1 == s2)
+			{
+				Console.WriteLine ("Singleton works.");
+			}
+
+			else
+			{
+				Console.WriteLine ("Singleton failed.");
+			}
+
+		}
+
+	}
+
+}
